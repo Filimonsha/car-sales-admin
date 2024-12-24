@@ -19,6 +19,7 @@ import CreateConfiguration from "./configurations/CreateConfiguration";
 import CreateModel from "./models/CreateModel";
 import CarList from "./cars/CarList";
 import EditModel from "./models/EditModel";
+import CarEdit from "./cars/CarEdit";
 
 export const App = () => {
 
@@ -73,7 +74,7 @@ export const App = () => {
             name="cars"
             list={CarList}
             create={CarsCreate}
-            edit={EditGuesser}
+            edit={CarEdit}
             show={ShowGuesser}
         />
         <Resource

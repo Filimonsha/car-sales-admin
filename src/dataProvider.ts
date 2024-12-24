@@ -1,8 +1,10 @@
 import simpleRestProvider from "ra-data-simple-rest";
 import {DataProvider, withLifecycleCallbacks} from "react-admin";
 
+console.log(import.meta.env.VITE_BACKEND_URL)
 export const dataProvider = withLifecycleCallbacks(simpleRestProvider(
         // import.meta.env.VITE_SIMPLE_REST_URL,
+        // TODO url
         "http://localhost:3000"
     ), [{
         resource: 'models',
