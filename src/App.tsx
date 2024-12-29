@@ -20,6 +20,14 @@ import CreateModel from "./models/CreateModel";
 import CarList from "./cars/CarList";
 import EditModel from "./models/EditModel";
 import CarEdit from "./cars/CarEdit";
+import EditConfiguration from "./configurations/EditConfiguration";
+import CreateColor from "./colors/CreateColor";
+import ListBrand from "./brands/ListBrand";
+import ListColor from "./colors/ListColor";
+import ListConfiguration from "./configurations/ListConfiguration";
+import ListDriveTypes from "./drive-types/ListDriveTypes";
+import ListEngineTypes from "./engine-types/ListEngineTypes";
+import ListStatuses from "./statuses/ListStatuses";
 
 export const App = () => {
 
@@ -30,24 +38,30 @@ export const App = () => {
     >
         <Resource
             name="engine-types"
-            list={ListGuesser}
+            list={ListEngineTypes}
             create={CreateEngineTypes}
             edit={EditGuesser}
             show={ShowGuesser}
         />
         <Resource
             name="drive-types"
-            list={ListGuesser}
+            list={ListDriveTypes}
             create={CreateDriveTypes}
             edit={EditGuesser}
             show={ShowGuesser}
         />
         <Resource
             name="statuses"
-            list={ListGuesser}
+            list={ListStatuses}
             create={CreateStatus}
             edit={EditGuesser}
             show={ShowGuesser}
+        />
+        <Resource
+            name="colors"
+            list={ListColor}
+            show={ShowGuesser}
+            create={CreateColor}
         />
         <Resource
             name="models"
@@ -58,14 +72,14 @@ export const App = () => {
         />
         <Resource
             name="configuration"
-            list={ListGuesser}
+            list={ListConfiguration}
             create={CreateConfiguration}
-            edit={EditGuesser}
+            edit={EditConfiguration}
             show={ShowGuesser}
         />
         <Resource
             name="brands"
-            list={ListGuesser}
+            list={ListBrand}
             create={CreateConfiguration}
             edit={EditGuesser}
             show={ShowGuesser}

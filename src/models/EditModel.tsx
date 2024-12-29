@@ -1,4 +1,4 @@
-import {Edit, ImageField, ImageInput, NumberInput, SimpleForm, TextInput} from "react-admin";
+import {Edit, ImageField, ImageInput, NumberInput, required, SimpleForm, TextInput} from "react-admin";
 import React from "react";
 
 const EditModel = () => {
@@ -6,7 +6,10 @@ const EditModel = () => {
         <Edit>
             <SimpleForm>
                 <TextInput source="modelCar" />
-                <ImageInput source="updatedBase64ImageSrc" label="Фото">
+                <ImageInput source="updatedBase64ImageSrc" label="Фото" >
+                    <ImageField source="src"/>
+                </ImageInput>
+                <ImageInput multiple source="galleryImages" validate={[required()]}>
                     <ImageField source="src"/>
                 </ImageInput>
                 <NumberInput source="maxSpeed" />

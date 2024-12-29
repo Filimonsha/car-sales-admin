@@ -7,6 +7,7 @@ const CarList = () => {
                 <TextField source="id" />
                 <BooleanField source="showOnMain" label="Show on Main Page" />
                 <NumberField source="rating" />
+                <BooleanField source="onStock" />
                 <TextField source="manufactureCountry" />
                 <NumberField source="yearOfProduction" />
                 <ReferenceField source="model" reference="models">

@@ -1,4 +1,13 @@
-import {BooleanInput, Edit, NumberInput, ReferenceInput, SelectInput, SimpleForm, TextInput} from "react-admin";
+import {
+    BooleanField,
+    BooleanInput,
+    Edit,
+    NumberInput,
+    ReferenceInput,
+    SelectInput,
+    SimpleForm,
+    TextInput
+} from "react-admin";
 import React from "react";
 
 const CarEdit = () => {
@@ -7,6 +16,7 @@ const CarEdit = () => {
             <SimpleForm>
                 <BooleanInput source="showOnMain" />
                 <NumberInput source="rating" />
+                <BooleanInput source="onStock" />
                 <TextInput source="manufactureCountry" />
                 <NumberInput source="yearOfProduction" optional />
                 <ReferenceInput source="brand" reference="brands">

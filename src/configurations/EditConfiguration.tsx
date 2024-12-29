@@ -1,19 +1,19 @@
 import React from 'react';
 import {
     BooleanInput,
-    Create,
+    Edit,
     NumberInput,
+    ReferenceArrayInput,
+    ReferenceInput,
+    SelectInput,
     SimpleForm,
     TextInput,
-    SelectInput,
-    ReferenceInput,
-    ReferenceArrayInput,
     SelectArrayInput
 } from "react-admin";
 
-const CreateConfiguration = () => {
+const EditConfiguration = () => {
     return (
-        <Create>
+        <Edit>
             <SimpleForm>
                 <TextInput source="configuration" />
                 <BooleanInput source="showPriceFrom" />
@@ -45,8 +45,8 @@ const CreateConfiguration = () => {
                     <SelectArrayInput optionText="colorName" />
                 </ReferenceArrayInput>
             </SimpleForm>
-        </Create>
+        </Edit>
     );
 };
 
-export default CreateConfiguration;
+export default EditConfiguration;

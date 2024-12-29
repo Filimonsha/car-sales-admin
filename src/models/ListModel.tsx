@@ -8,7 +8,8 @@ import {
     Filter,
     TextInput,
     ReferenceField,
-    ReferenceArrayField, ImageField,
+    ArrayField,SingleFieldList,
+    ReferenceArrayField, ImageField, ArrayInput, ChipField,
 } from 'react-admin';
 
 const ListModel = () => {
@@ -30,21 +31,22 @@ const ListModel = () => {
                 <NumberField source="wheelBase" label="База" />
                 <NumberField source="clearance" label="Загрузочная высота" />
 
-                <ReferenceArrayField
+                <ArrayField
                     label="Конфигурации"
-                    reference="configurations"
                     source="configurations"
                 >
-                </ReferenceArrayField>
-
-                <ReferenceField
-                    label="Автомобиль"
-                    source="car_id"
-                    reference="cars"
-                    allowEmpty={true}
+                    <SingleFieldList>
+                        <ChipField source="configuration"/>
+                    </SingleFieldList>
+                </ArrayField>
+                <ArrayField
+                    label="Автомобили"
+                    source="cars"
                 >
-                    <TextField source="modelCar" />
-                </ReferenceField>
+                    <SingleFieldList>
+                        <ChipField source="id"/>
+                    </SingleFieldList>
+                </ArrayField>
             </Datagrid>
 
             {/*<Filter compact={false}>*/}

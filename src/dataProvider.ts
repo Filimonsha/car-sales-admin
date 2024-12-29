@@ -10,57 +10,83 @@ export const dataProvider = withLifecycleCallbacks(simpleRestProvider(
         resource: 'models',
         beforeUpdate: async (params, dataProvider: DataProvider) => {
             // const newPictures = params.data.picture.filter(picture => picture.rawFile instanceof File)
-            // TODO несколько файлов
             console.log(params)
+            // TODO несколько файлов
             let updatedBase64ImageSrc = params.data.updatedBase64ImageSrc;
             let pictures;
+            let base64GalleryPictures;
+            let newGalleryPictures;
+            if (params.data.galleryImages) {
+                newGalleryPictures = params.data.galleryImages.filter(picture => picture.rawFile instanceof File)
+                base64GalleryPictures = await Promise.all(
+                    newGalleryPictures.map(convertFileToBase64)
+                )
+            }
+
+
             if (updatedBase64ImageSrc) {
-                const newPictures = [updatedBase64ImageSrc].filter(picture => picture.rawFile instanceof File)
-                console.log(newPictures)
+                const newMainPictures = [updatedBase64ImageSrc].filter(picture => picture.rawFile instanceof File)
+
+                console.log(newMainPictures)
 
                 const base64Pictures = await Promise.all(
-                    newPictures.map(convertFileToBase64)
+                    newMainPictures.map(convertFileToBase64)
                 )
+
                 pictures = [
                     ...base64Pictures.map((dataUrl, index) => ({
                         src: dataUrl,
-                        title: newPictures[index].title,
+                        title: newMainPictures[index].title,
                     })),
                     // ...formerPictures,
                 ];
-                console.log(pictures)
             }
 
             return {
                 ...params,
                 data: {
                     ...params.data,
-                    updatedBase64ImageSrc: updatedBase64ImageSrc ? pictures[0].src : params.data.base64ImageSrc
+                    updatedBase64ImageSrc: updatedBase64ImageSrc ? pictures[0].src : params.data.base64ImageSrc,
+                    galleryImages: newGalleryPictures.length > 0 ? base64GalleryPictures : params.data.galleryImages?.map(image =>image.src)
                 }
             }
         },
         beforeCreate: async (params, dataProvider: DataProvider) => {
             console.log(params)
             // const newPictures = params.data.picture.filter(picture => picture.rawFile instanceof File)
-            const newPictures = [params.data.base64ImageSrc].filter(picture => picture.rawFile instanceof File)
-            console.log(newPictures)
+            const newMainPictures = [params.data.base64ImageSrc].filter(picture => picture.rawFile instanceof File)
+            const newGalleryPictures = params.data.galleryImages.filter(picture => picture.rawFile instanceof File)
+            console.log(newGalleryPictures)
+
+            let base64GalleryPictures;
+            if (params.data.galleryImages) {
+                const newGalleryPictures = params.data.galleryImages.filter(picture => picture.rawFile instanceof File)
+                base64GalleryPictures = await Promise.all(
+                    newGalleryPictures.map(convertFileToBase64)
+                )
+            }
+
             const base64Pictures = await Promise.all(
-                newPictures.map(convertFileToBase64)
+                newMainPictures.map(convertFileToBase64)
             )
+
             const pictures = [
                 ...base64Pictures.map((dataUrl, index) => ({
                     src: dataUrl,
-                    title: newPictures[index].title,
+                    title: newMainPictures[index].title,
                 })),
                 // ...formerPictures,
             ];
-            console.log(params)
+
+
+            console.log(base64GalleryPictures)
             console.log(pictures)
             return {
                 data: {
                     ...params.data,
                     // TODO пока одна отка, а если надо несколько ?
-                    base64ImageSrc: pictures[0].src
+                    base64ImageSrc: pictures[0].src,
+                    galleryImages: base64GalleryPictures
                 }
             }
         }

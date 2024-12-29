@@ -11,6 +11,7 @@ import {
     ImageField,
     ReferenceInput, SelectInput
 } from "react-admin";
+import React from "react";
 
 const CarsCreate = () => {
     return (
@@ -18,6 +19,7 @@ const CarsCreate = () => {
             <SimpleForm>
                 <BooleanInput source="showOnMain" />
                 <NumberInput source="rating" />
+                <BooleanInput source="onStock" />
                 <TextInput source="manufactureCountry" />
                 <NumberInput source="yearOfProduction" optional />
                 <ReferenceInput source="brand" reference="brands">
