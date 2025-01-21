@@ -28,6 +28,7 @@ import ListConfiguration from "./configurations/ListConfiguration";
 import ListDriveTypes from "./drive-types/ListDriveTypes";
 import ListEngineTypes from "./engine-types/ListEngineTypes";
 import ListStatuses from "./statuses/ListStatuses";
+import CreateBrand from "./brands/CreateBrand";
 
 export const App = () => {
 
@@ -60,6 +61,7 @@ export const App = () => {
         <Resource
             name="colors"
             list={ListColor}
+            edit={EditGuesser}
             show={ShowGuesser}
             create={CreateColor}
         />
@@ -80,7 +82,7 @@ export const App = () => {
         <Resource
             name="brands"
             list={ListBrand}
-            create={CreateConfiguration}
+            create={CreateBrand}
             edit={EditGuesser}
             show={ShowGuesser}
         />

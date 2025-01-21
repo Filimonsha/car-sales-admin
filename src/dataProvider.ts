@@ -5,7 +5,7 @@ console.log(import.meta.env.VITE_BACKEND_URL)
 export const dataProvider = withLifecycleCallbacks(simpleRestProvider(
         // import.meta.env.VITE_SIMPLE_REST_URL,
         // TODO url
-        "http://localhost:3000"
+        "https://geekdrive.ru/api/"
     ), [{
         resource: 'models',
         beforeUpdate: async (params, dataProvider: DataProvider) => {

@@ -24,8 +24,8 @@ const ListConfiguration = () => {
                 <NumberField source="powerCar" />
                 <NumberField source="range" optional />
                 <TextField source="gearBox" optional />
-                <TextField source="exteriorColor" />
-                <TextField source="interiorColor" />
+                {/* <TextField source="exteriorColor" />
+                <TextField source="interiorColor" /> */}
                 <NumberField source="maxTorque" optional />
                 <NumberField source="maxPower" />
                 <TextField source="breakType" />

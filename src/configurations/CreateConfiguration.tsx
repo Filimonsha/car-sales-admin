@@ -23,8 +23,8 @@ const CreateConfiguration = () => {
                 <NumberInput source="powerCar" />
                 <NumberInput source="range" optional />
                 <TextInput source="gearBox" optional />
-                <TextInput source="exteriorColor" />
-                <TextInput source="interiorColor" />
+                {/* <TextInput source="exteriorColor" />
+                <TextInput source="interiorColor" /> */}
                 <NumberInput source="maxTorque" optional />
                 <NumberInput source="maxPower" />
                 <TextInput source="breakType" />
