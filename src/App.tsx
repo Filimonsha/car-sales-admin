@@ -1,9 +1,8 @@
 import {
-    Admin,
     Resource,
     ListGuesser,
     EditGuesser,
-    ShowGuesser,
+    ShowGuesser, usePermissions, useAuthProvider,
 } from "react-admin";
 import {Layout} from "./Layout";
 import {dataProvider} from "./dataProvider";
@@ -29,73 +28,17 @@ import ListDriveTypes from "./drive-types/ListDriveTypes";
 import ListEngineTypes from "./engine-types/ListEngineTypes";
 import ListStatuses from "./statuses/ListStatuses";
 import CreateBrand from "./brands/CreateBrand";
+import {QueryClientProvider} from "@tanstack/react-query";
+import AdminWrapper from "./AdminWrapper";
+import {queryClient} from "./queryClient";
 
 export const App = () => {
+    // const user = localStorage.getItem("user")
+    // console.log(user)
+    return (
+        <QueryClientProvider client={queryClient}>
+            <AdminWrapper/>
+        </QueryClientProvider>
 
-    return <Admin
-        layout={Layout}
-        dataProvider={dataProvider}
-        authProvider={authProvider}
-    >
-        <Resource
-            name="engine-types"
-            list={ListEngineTypes}
-            create={CreateEngineTypes}
-            edit={EditGuesser}
-            show={ShowGuesser}
-        />
-        <Resource
-            name="drive-types"
-            list={ListDriveTypes}
-            create={CreateDriveTypes}
-            edit={EditGuesser}
-            show={ShowGuesser}
-        />
-        <Resource
-            name="statuses"
-            list={ListStatuses}
-            create={CreateStatus}
-            edit={EditGuesser}
-            show={ShowGuesser}
-        />
-        <Resource
-            name="colors"
-            list={ListColor}
-            edit={EditGuesser}
-            show={ShowGuesser}
-            create={CreateColor}
-        />
-        <Resource
-            name="models"
-            create={CreateModel}
-            list={ListModel}
-            show={ShowModel}
-            edit={EditModel}
-        />
-        <Resource
-            name="configuration"
-            list={ListConfiguration}
-            create={CreateConfiguration}
-            edit={EditConfiguration}
-            show={ShowGuesser}
-        />
-        <Resource
-            name="brands"
-            list={ListBrand}
-            create={CreateBrand}
-            edit={EditGuesser}
-            show={ShowGuesser}
-        />
-        <Resource
-            name="cars"
-            list={CarList}
-            create={CarsCreate}
-            edit={CarEdit}
-            show={ShowGuesser}
-        />
-        <Resource
-            name="configurations"
-
-        />
-    </Admin>
+        )
 };

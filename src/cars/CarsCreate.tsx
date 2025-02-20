@@ -32,7 +32,7 @@ const CarsCreate = () => {
                     <SelectInput optionText="status" />
                 </ReferenceInput>
                 <ReferenceInput source="configuration" reference="configuration">
-                    <SelectInput optionText="configuration" />
+                    <SelectInput optionText={c => `${c.id} ${c.configuration}`} />
                 </ReferenceInput>
             </SimpleForm>
         </Create>

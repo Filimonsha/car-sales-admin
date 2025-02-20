@@ -48,17 +48,6 @@ const ListModel = () => {
                     </SingleFieldList>
                 </ArrayField>
             </Datagrid>
-
-            {/*<Filter compact={false}>*/}
-            {/*    <TextInput label="Поиск по ID" source="id_filter" alwaysOn />*/}
-            {/*    <TextInput label="Поиск по модели автомобиля" source="modelCar_filter" alwaysOn />*/}
-            {/*    <NumberInputLabel>*/}
-            {/*        <NumberInput source="maxSpeed_filter" startAdornment={<NumberInputAdornment value="Максимальная скорость" />} />*/}
-            {/*    </NumberInputLabel>*/}
-            {/*    <NumberInputLabel>*/}
-            {/*        <NumberInput source="fuelEconomy_filter" startAdornment={<NumberInputAdornment value="Экономия топлива" />} />*/}
-            {/*    </NumberInputLabel>*/}
-            {/*</Filter>*/}
         </List>
     );
 };

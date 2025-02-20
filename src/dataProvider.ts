@@ -3,9 +3,8 @@ import {DataProvider, withLifecycleCallbacks} from "react-admin";
 
 console.log(import.meta.env.VITE_BACKEND_URL)
 export const dataProvider = withLifecycleCallbacks(simpleRestProvider(
-        // import.meta.env.VITE_SIMPLE_REST_URL,
-        // TODO url
         "https://geekdrive.ru/api/"
+    // "http://localhost:3000"
     ), [{
         resource: 'models',
         beforeUpdate: async (params, dataProvider: DataProvider) => {
@@ -90,6 +89,61 @@ export const dataProvider = withLifecycleCallbacks(simpleRestProvider(
                 }
             }
         }
+    },{
+    resource: "services",
+    beforeUpdate: async (params, dataProvider: DataProvider) => {
+        // TODO несколько файлов
+        let updatedBase64ImageSrc = params.data.updatedPhotoOfService;
+        let pictures;
+
+        if (updatedBase64ImageSrc) {
+            const newMainPictures = [updatedBase64ImageSrc].filter(picture => picture.rawFile instanceof File)
+
+
+            const base64Pictures = await Promise.all(
+                newMainPictures.map(convertFileToBase64)
+            )
+
+            pictures = [
+                ...base64Pictures.map((dataUrl, index) => ({
+                    src: dataUrl,
+                    title: newMainPictures[index].title,
+                })),
+                // ...formerPictures,
+            ];
+        }
+
+        console.log(updatedBase64ImageSrc ? pictures[0].src : params.data.photoOfService,updatedBase64ImageSrc)
+        return {
+            ...params,
+            data: {
+                ...params.data,
+                updatedPhotoOfService: updatedBase64ImageSrc ? pictures[0].src : params.data.photoOfService,
+            }
+        }
+    },
+    beforeCreate: async (params, dataProvider: DataProvider) => {
+        const newMainPictures = [params.data.photoOfService].filter(picture => picture.rawFile instanceof File)
+
+        const base64Pictures = await Promise.all(
+            newMainPictures.map(convertFileToBase64)
+        )
+
+        const pictures = [
+            ...base64Pictures.map((dataUrl, index) => ({
+                src: dataUrl,
+                title: newMainPictures[index].title,
+            })),
+            // ...formerPictures,
+        ];
+        return {
+            data: {
+                ...params.data,
+                // TODO пока одна отка, а если надо несколько ?
+                photoOfService: pictures[0].src,
+            }
+        }
+    }
     }])
 ;
 const convertFileToBase64 = file =>

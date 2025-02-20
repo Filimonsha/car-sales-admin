@@ -29,6 +29,7 @@ const CreateConfiguration = () => {
                 <NumberInput source="maxPower" />
                 <TextInput source="breakType" />
                 <TextInput source="typeSuspension" />
+                <TextInput source="comment" />
                 <ReferenceInput source="engineType" reference="engine-types">
                     <SelectInput optionText="engineType" />
                 </ReferenceInput>

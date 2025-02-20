@@ -30,7 +30,6 @@ const ListConfiguration = () => {
                 <NumberField source="maxPower" />
                 <TextField source="breakType" />
                 <TextField source="typeSuspension" />
-
                 <ReferenceField source="engineType" reference="engine-types">
                     {/*<TextField optionText="engineType" />*/}
                 </ReferenceField>

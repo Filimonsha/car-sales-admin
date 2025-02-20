@@ -16,7 +16,6 @@ const ShowModelLayout = () => {
             <TextField source="id"/>
             <Labeled label="Главное фото">
                 <ImageField source="base64ImageSrc" alt="Model image"/>
-                {/*{renderBase64ImageSrc()}*/}
             </Labeled>
             <Labeled label="Фото галлереи">
                     {/*{*/}
@@ -44,28 +43,9 @@ const ShowModelLayout = () => {
 
 const ShowModel = () => {
 
-    // const renderConfigurations = () => (
-    //     <ArrayField source="configurations">
-    //         <Datagrid>
-    //             {/* Здесь можно добавить отображение полей конфигурации */}
-    //         </Datagrid>
-    //     </ArrayField>
-    // );
-
     return (
         <Show>
             <ShowModelLayout/>
-            {/*<Labeled label="Конфигурации">*/}
-            {/*    {renderConfigurations()}*/}
-            {/*</Labeled>*/}
-
-            {/*<Labeled label="Связанный автомобиль">*/}
-            {/*    <ReferenceField label="Автомобиль" source="car_id" reference="cars">*/}
-            {/*        <TextField source="modelCar"/>*/}
-            {/*    </ReferenceField>*/}
-            {/*</Labeled>*/}
-
-            {/* Добавьте здесь отображение поля car */}
         </Show>
     );
 };
